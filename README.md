@@ -57,7 +57,7 @@ portfolio/
 
 ---
 
-## Future Objectives
+## Future Enhancements
 
 - **Backend form handling** — Connect the contact form to a real endpoint (e.g., Formspree or a lightweight Node server).
 - **Expanded project section** — Add more case studies with detailed write-ups as new work ships.
