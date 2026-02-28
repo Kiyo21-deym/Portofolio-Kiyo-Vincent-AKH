@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Product Designer Portfolio — Crafting intuitive digital experiences with clean aesthetics and accessible design patterns."
+    />
+    <title>Kiyo Vincent | Portfolio</title>
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
+    <!-- Google Fonts - Inter Only -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Deferred JavaScript -->
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <!-- Skip Link (Accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- ============================================ -->
+    <!-- LEFT SIDEBAR (Social Media)                  -->
+    <!-- ============================================ -->
+    <aside class="sidebar sidebar--left" aria-label="Social media links">
+      <div class="sidebar__content">
+        <a
+          href="https://github.com/Kiyo21-deym"
+          class="sidebar__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+        >
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://linkedin.com/in/kiyo-vincent-adhi-kusalo-hartono-84b612367/"
+          class="sidebar__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a
+          href="https://www.instagram.com/king_kiyo21/"
+          class="sidebar__link"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </a>
+        <div class="sidebar__divider"></div>
+      </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- RIGHT SIDEBAR (Email)                        -->
+    <!-- ============================================ -->
+    <aside class="sidebar sidebar--right" aria-label="Contact email">
+      <div class="sidebar__content">
+        <!-- FIX: Restored plain email — was Cloudflare-obfuscated, unusable without CF environment -->
+        <a
+          href="mailto:vncnthartono@gmail.com"
+          class="sidebar__email"
+          aria-label="Send email to vncnthartono@gmail.com"
+        >
+          <span>vncnthartono@gmail.com</span>
+        </a>
+        <div class="sidebar__divider"></div>
+      </div>
+    </aside>
+
+    <!-- ============================================ -->
+    <!-- HEADER / NAVBAR (Glass Bubble)               -->
+    <!-- ============================================ -->
+    <header class="header" role="banner">
+      <nav
+        class="header__nav"
+        role="navigation"
+        aria-label="Primary navigation"
+      >
+        <!-- Logo (image with accessible text fallback) -->
+        <a href="#home" class="header__logo" aria-label="Home">
+          <img
+            src="assets/logo.svg"
+            alt="Kiyo Vincent logo"
+            class="header__logo-image"
+            width="140"
+            height="40"
+          />
+          <span class="header__logo-text visually-hidden">Kiyo Vincent</span>
+        </a>
+
+        <!-- Right: Navigation + Actions -->
+        <div class="header__right-group">
+          <!-- Desktop Menu -->
+          <ul class="header__menu-desktop">
+            <li class="header__menu-item">
+              <a href="#home" class="nav__link">Home</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#about" class="nav__link">About</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#projects" class="nav__link">Projects</a>
+            </li>
+            <li class="header__menu-item">
+              <a href="#contact" class="nav__link">Contact</a>
+            </li>
+          </ul>
+
+          <!-- Actions -->
+          <div class="header__actions">
+            <a
+              href="/assets/Resume - Kiyo Vincent Adhi Kusalo Hartono.pdf"
+              class="header__resume-btn button button--outline"
+              download
+            >
+              Resume
+            </a>
+
+            <button
+              id="theme-toggle"
+              class="header__theme-toggle"
+              type="button"
+              aria-label="Toggle dark/light theme"
+              aria-pressed="false"
+            >
+              <i class="fas fa-moon" aria-hidden="true"></i>
+            </button>
+
+            <!-- Hamburger (Mobile Only) -->
+            <button
+              id="hamburger-menu"
+              class="header__hamburger"
+              type="button"
+              aria-label="Toggle mobile menu"
+              aria-expanded="false"
+            >
+              <span class="hamburger__line" aria-hidden="true"></span>
+              <span class="hamburger__line" aria-hidden="true"></span>
+              <span class="hamburger__line" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MOBILE MENU (Progressive Enhancement)        -->
+    <!-- ============================================ -->
+    <div class="header__menu-mobile" aria-hidden="true">
+      <ul>
+        <li><a href="#home" class="nav__link">Home</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#projects" class="nav__link">Projects</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
+        <li>
+          <a href="/assets/resume.pdf" class="button" download
+            >Download Resume</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- MAIN CONTENT                                 -->
+    <!-- ============================================ -->
+    <main id="main-content" role="main">
+      <!-- HERO SECTION -->
+      <section id="home" class="hero" aria-labelledby="hero-title">
+        <div class="hero__content">
+          <span class="hero__greeting">Hi there, Nice to meet you~</span>
+          <h1 id="hero-title" class="hero__title">Kiyo Vincent Adhi K. H.</h1>
+          <h2 class="hero__subtitle">
+            Computer Science Student at BINUS University @Malang
+          </h2>
+          <p class="hero__description">
+            I'm a passionate computer science student with a love for coding and
+            problem-solving. I enjoy exploring new technologies and applying my
+            skills to create innovative solutions. Welcome to my portfolio!
+          </p>
+          <div class="hero__cta-group">
+            <a href="#projects" class="button">View My Work</a>
+            <a href="#contact" class="button button--outline">Contact Me</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT SECTION (01) -->
+      <section id="about" class="about" aria-labelledby="about-title">
+        <div class="section__header">
+          <h2 id="about-title" class="section__title">
+            <span class="section__number">01.</span> About Me
+          </h2>
+          <div class="section__divider"></div>
+        </div>
+
+        <div class="about__container">
+          <div class="about__text">
+            <p>
+              I started my journey in the world of technology at a young age,
+              tinkering with computers and writing my first lines of code in
+              high school. Over the years, I've honed my skills through personal
+              projects and formal education in computer science.
+            </p>
+            <p>
+              I'm particularly interested in web development, UI/UX design, and
+              data visualization. I believe that technology should be both
+              functional and beautiful, and I strive to create digital
+              experiences that are intuitive, accessible, and visually engaging.
+            </p>
+
+            <ul class="about__skills-list">
+              <li class="about__skill-item">JavaScript</li>
+              <li class="about__skill-item">React</li>
+              <li class="about__skill-item">Node.js</li>
+              <li class="about__skill-item">Figma</li>
+              <li class="about__skill-item">HTML & CSS</li>
+            </ul>
+          </div>
+
+          <div class="about__image-wrapper">
+            <div class="about__image-frame">
+              <img
+                src="assets/photoProfile.JPG"
+                alt="Portrait of Alex, Product Designer"
+                class="about__image"
+                width="280"
+                height="280"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS SECTION (02) -->
+      <section id="projects" class="projects" aria-labelledby="projects-title">
+        <div class="section__header">
+          <h2 id="projects-title" class="section__title">
+            <span class="section__number">02.</span> Featured Projects
+          </h2>
+          <div class="section__divider"></div>
+        </div>
+
+        <div class="projects__container">
+          <!-- Project List (Left) -->
+          <div class="projects__list">
+            <button
+              class="project-list-item active"
+              data-project="project-1"
+              aria-pressed="true"
+            >
+              <div class="project-list-item__thumbnail">
+                <img
+                  src="assets/libmanager-dashboard.png"
+                  alt="LibManager"
+                  width="120"
+                  height="80"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-list-item__content">
+                <h3 class="project-list-item__title">LibManager</h3>
+                <p class="project-list-item__category">
+                  Library Management System
+                </p>
+              </div>
+            </button>
+
+            <button
+              class="project-list-item"
+              data-project="project-2"
+              aria-pressed="false"
+            >
+              <div class="project-list-item__thumbnail">
+                <img
+                  src="assets/ecoTracker.png"
+                  alt="EcoTrack Mobile App thumbnail"
+                  width="120"
+                  height="80"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-list-item__content">
+                <h3 class="project-list-item__title">EcoTrack</h3>
+                <p class="project-list-item__category">Mobile App</p>
+              </div>
+            </button>
+
+            <button
+              class="project-list-item"
+              data-project="project-3"
+              aria-pressed="false"
+            >
+              <div class="project-list-item__thumbnail">
+                <img
+                  src="assets/CleanSea.png"
+                  alt="CleanSea"
+                  width="120"
+                  height="80"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-list-item__content">
+                <h3 class="project-list-item__title">CleanSea</h3>
+                <p class="project-list-item__category">Web App</p>
+              </div>
+            </button>
+          </div>
+
+          <!-- Project Preview (Right) -->
+          <div class="projects__preview">
+            <article
+              class="project-preview active"
+              id="project-1"
+              role="tabpanel"
+            >
+              <div class="project-preview__image">
+                <img
+                  src="assets/libmanager-dashboard.png"
+                  alt="LibManager Dashboard screenshot"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-preview__content">
+                <h3 class="project-preview__title">LibManager Dashboard</h3>
+                <p class="project-preview__description">
+                  A comprehensive library management platform with real-time
+                  data visualization and AI-powered insights for librarians.
+                </p>
+                <ul class="project-preview__tags">
+                  <li>Laravel</li>
+                  <li>PHP</li>
+                </ul>
+                <div class="project-preview__links">
+                  <a href="#" class="button button--sm"
+                    ><i class="fas fa-external-link-alt"></i> Demo</a
+                  >
+                  <a
+                    href="https://github.com/Kiyo21-deym/Kiyo-Vincent-Adhi-Kusalo-Hartono_BE_Mid-Project.git"
+                    class="button button--sm button--outline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    ><i class="fab fa-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-preview"
+              id="project-2"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <div class="project-preview__image">
+                <img
+                  src="assets/ecoTracker.png"
+                  alt="EcoTrack Mobile App screenshot"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-preview__content">
+                <h3 class="project-preview__title">EcoTrack Mobile</h3>
+                <p class="project-preview__description">
+                  Sustainability-focused mobile app helping users monitor carbon
+                  footprint and discover local green initiatives.
+                </p>
+                <ul class="project-preview__tags">
+                  <li>React Native</li>
+                  <li>Firebase</li>
+                  <li>TypeScript</li>
+                </ul>
+                <div class="project-preview__links">
+                  <a href="#" class="button button--sm"
+                    ><i class="fas fa-external-link-alt"></i> Demo</a
+                  >
+                  <a href="#" class="button button--sm button--outline"
+                    ><i class="fab fa-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-preview"
+              id="project-3"
+              role="tabpanel"
+              aria-hidden="true"
+            >
+              <div class="project-preview__image">
+                <img
+                  src="assets/CleanSea.png"
+                  alt="CleanSea Web App screenshot"
+                  width="800"
+                  height="500"
+                  loading="lazy"
+                />
+              </div>
+              <div class="project-preview__content">
+                <h3 class="project-preview__title">CleanSea</h3>
+                <p class="project-preview__description">
+                  An interactive web app visualizing ocean pollution data and
+                  promoting community-driven cleanup efforts worldwide.
+                </p>
+                <ul class="project-preview__tags">
+                  <li>Figma</li>
+                </ul>
+                <div class="project-preview__links">
+                  <a href="#" class="button button--sm"
+                    ><i class="fas fa-external-link-alt"></i> Docs</a
+                  >
+                  <a href="#" class="button button--sm button--outline"
+                    ><i class="fab fa-github"></i> Code</a
+                  >
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT SECTION (03) -->
+      <section id="contact" class="contact" aria-labelledby="contact-title">
+        <div class="section__header">
+          <h2 id="contact-title" class="section__title">
+            <span class="section__number">03.</span> Get In Touch
+          </h2>
+          <div class="section__divider"></div>
+        </div>
+
+        <div class="contact__content">
+          <p class="contact__text">
+            Although I'm not currently looking for any new opportunities, my
+            inbox is always open. Whether you have a question or just want to
+            say hi, I'll try my best to get back to you!
+          </p>
+
+          <form
+            id="contact-form"
+            class="contact__form glass"
+            action="/api/contact"
+            method="POST"
+            novalidate
+          >
+            <div class="form__group">
+              <label for="contact-name" class="form__label">Name</label>
+              <input
+                type="text"
+                id="contact-name"
+                name="name"
+                class="form__input"
+                placeholder="Your name"
+                required
+                aria-required="true"
+              />
+              <span
+                class="form__error"
+                id="name-error"
+                role="alert"
+                aria-live="polite"
+              ></span>
+            </div>
+            <div class="form__group">
+              <label for="contact-email" class="form__label">Email</label>
+              <input
+                type="email"
+                id="contact-email"
+                name="email"
+                class="form__input"
+                placeholder="your@email.com"
+                required
+                aria-required="true"
+              />
+              <span
+                class="form__error"
+                id="email-error"
+                role="alert"
+                aria-live="polite"
+              ></span>
+            </div>
+            <div class="form__group">
+              <label for="contact-message" class="form__label">Message</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                class="form__textarea"
+                placeholder="Say hello..."
+                rows="4"
+                required
+                aria-required="true"
+              ></textarea>
+              <span
+                class="form__error"
+                id="message-error"
+                role="alert"
+                aria-live="polite"
+              ></span>
+            </div>
+            <button type="submit" class="button">Send Message</button>
+            <div
+              id="form-status"
+              class="form__status"
+              role="status"
+              aria-live="polite"
+            ></div>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <p class="footer__copyright">
+        &copy; <span id="current-year">2024</span> Kiyo Vincent. Built by Kiyo
+        Vincent Adhi K. H.
+      </p>
+    </footer>
+  </body>
+</html>

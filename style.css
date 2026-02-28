@@ -1,0 +1,1125 @@
+/* ============================================
+   STYLE.CSS — Portfolio Website
+   Glassmorphism UI | Warm Dark Theme
+   ============================================ */
+
+/* ============================================
+   1. CSS CUSTOM PROPERTIES
+   ============================================ */
+:root {
+  /* Colors */
+  --color-50: #fff8eb;
+  --color-100: #fdecc8;
+  --color-400: #f89c1b;
+  --color-500: #f27e0e;
+  --bg-color: #150a03;
+  --bg-light: #1e1205;
+  --text-primary: var(--color-50);
+  --text-secondary: var(--color-100);
+  --text-muted: #94a3b8;
+
+  /* Accents */
+  --accent-color: var(--color-400);
+  --accent-hover: var(--color-500);
+  --glass-bg: rgba(248, 156, 27, 0.05);
+  --glass-border: rgba(248, 156, 27, 0.15);
+  --glow-color: rgba(248, 156, 27, 0.3);
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.25rem;
+  --space-xl: 1.5rem;
+  --space-2xl: 2rem;
+  --space-3xl: 2.5rem;
+  --space-4xl: 3rem;
+  --space-5xl: 3.5rem;
+
+  /* Layout */
+  --nav-height: 70px;
+  --content-max-width: 1000px;
+  --sidebar-offset: 80px;
+
+  /* Transitions */
+  --transition-fast: 150ms ease-in-out;
+  --transition-base: 300ms ease-in-out;
+
+  /* Border Radius */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  /* Z-Index */
+  --z-sidebar: 10;
+  --z-header: 100;
+  --z-mobile-menu: 99;
+  --z-skip-link: 1000;
+}
+
+/* Light theme overrides */
+[data-theme="light"] {
+  --bg-color: #fdfdfd;
+  --bg-light: #ffffff;
+  --text-primary: #111;
+  --text-secondary: #333;
+  --text-muted: #666;
+  --glass-bg: rgba(248, 156, 27, 0.1);
+  --glass-border: rgba(248, 156, 27, 0.2);
+  --accent-color: var(--color-400);
+  --accent-hover: var(--color-500);
+  /* invert some components for legibility */
+}
+
+/* ============================================
+   2. GLOBAL RESET & BASE
+   ============================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* FIX: header is floating with top: 1rem (16px) + height 70px = 86px total.
+     scroll-padding-top set to 100px to give comfortable breathing room. */
+  scroll-padding-top: 100px;
+  font-size: 16px;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+ul {
+  list-style: none;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+button {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* ============================================
+   3. TYPOGRAPHY
+   ============================================ */
+h1,
+h2,
+h3 {
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  letter-spacing: -0.01em;
+}
+
+p {
+  color: var(--text-muted);
+  margin-bottom: var(--space-md);
+  font-weight: 300;
+}
+
+/* ============================================
+   4. UTILITY CLASSES
+   ============================================ */
+
+/* FIX: .glass was missing entirely — added proper glassmorphism definition */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+}
+
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0;
+  background: var(--accent-color);
+  color: var(--bg-color);
+  padding: var(--space-sm) var(--space-md);
+  z-index: var(--z-skip-link);
+  transition: top 0.3s;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================
+   5. SIDEBARS (Left & Right)
+   ============================================ */
+.sidebar {
+  position: fixed;
+  z-index: var(--z-sidebar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+}
+
+.sidebar__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+
+.sidebar__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  transition: all var(--transition-base);
+}
+
+.sidebar__link:hover,
+.sidebar__link:focus-visible {
+  color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+/* Email positioned at 360deg rotation (static position, no animation on hover) */
+.sidebar__email {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  transform: rotate(360deg);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  font-family: monospace;
+  transition: color var(--transition-base);
+  transform-origin: center;
+  white-space: nowrap;
+  margin-bottom: var(--space-lg);
+}
+
+.sidebar__email:hover,
+.sidebar__email:focus-visible {
+  color: var(--accent-color);
+}
+
+.sidebar__divider {
+  width: 1px;
+  height: 90px;
+  background: var(--text-muted);
+  opacity: 0.5;
+}
+
+/* FIX: sidebar was using static top offset (80px), causing icons to be
+   cut off at top. Now truly vertically centered with translateY(-50%). */
+.sidebar--left {
+  left: var(--space-xl);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.sidebar--right {
+  right: var(--space-xl);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* ============================================
+   6. HEADER / NAVBAR
+   ============================================ */
+.header {
+  position: fixed;
+  top: var(--space-md);
+  left: var(--space-md);
+  right: var(--space-md);
+  height: var(--nav-height);
+  z-index: var(--z-header);
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--space-md);
+}
+
+.header__nav {
+  width: 100%;
+  /* allow nav to expand with header so logo stays flush left */
+  max-width: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0; /* removed bubble padding */
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  z-index: calc(var(--z-header) + 1);
+  letter-spacing: -0.02em;
+  border-radius: 0; /* no outer bubble */
+  background: transparent; /* remove bubble background */
+  border: none; /* remove bubble border */
+  overflow: visible;
+  transition: transform var(--transition-base);
+}
+
+/* Logo image sizing and accessible text helper */
+.header__logo-image {
+  display: block;
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+  border-radius: calc(var(--radius-md)); /* rounded image corners */
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.header__logo-image:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--glow-color);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+}
+
+.header__right-group {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+}
+
+.header__menu-desktop {
+  display: flex;
+  gap: var(--space-lg);
+}
+
+.nav__link {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+  font-weight: 400;
+  transition: color var(--transition-base);
+  letter-spacing: 0.05em;
+}
+
+.nav__link:hover,
+.nav__link:focus-visible {
+  color: var(--accent-color);
+}
+
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+/* Resume button glow like logo */
+.header__resume-btn {
+  transition:
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+.header__resume-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px var(--glow-color);
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.header__theme-toggle {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-base);
+  font-size: 0.9rem;
+}
+
+.header__theme-toggle:hover {
+  background: var(--glass-bg);
+  color: var(--accent-color);
+  border-color: var(--accent-color);
+}
+
+/* FIX: hamburger was too large on mobile. Reduced width to 20px, gap to 4px. */
+.header__hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  width: 20px;
+  padding: 2px;
+}
+
+.hamburger__line {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--accent-color);
+  transition: all var(--transition-base);
+  transform-origin: center;
+}
+
+/* Adjusted translateY to match new gap (4px gap + 2px line = 6px per step) */
+.header__hamburger.hamburger--open .hamburger__line:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.header__hamburger.hamburger--open .hamburger__line:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.header__hamburger.hamburger--open .hamburger__line:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* ============================================
+   7. MOBILE MENU — Narrow sidebar style
+   ============================================ */
+.header__menu-mobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  /* Narrow panel — just wide enough for menu items */
+  width: 220px;
+  height: 100%;
+  /* 100dvh: covers full height including mobile browser chrome/address bar */
+  height: 100dvh;
+  background: var(--bg-light);
+  border-left: 1px solid var(--glass-border);
+  /* Compact top padding: just clear the header height */
+  padding: calc(var(--nav-height) + var(--space-lg)) var(--space-xl)
+    var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform var(--transition-base);
+  z-index: var(--z-mobile-menu);
+  box-shadow: -8px 0 24px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+}
+
+.header__menu-mobile ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  list-style: none;
+  margin-top: 0;
+}
+
+.header__menu-mobile .nav__link {
+  font-size: 1rem;
+  font-weight: 500;
+  display: block;
+  padding: var(--space-xs) 0;
+  color: var(--text-primary);
+}
+
+.header__menu-mobile .nav__link:hover {
+  color: var(--accent-color);
+}
+
+.header__menu-mobile .button {
+  margin-top: var(--space-xl);
+  width: 100%;
+  justify-content: center;
+  font-size: 0.8rem;
+}
+
+.header__menu-mobile.active {
+  transform: translateX(0);
+}
+
+/* FIX: JS scroll effect now uses class toggle instead of inline style override.
+   This preserves CSS variable theming and avoids specificity conflicts. */
+.header--scrolled {
+  background: rgba(21, 10, 3, 0.95) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* light theme needs its own scrolled appearance otherwise it goes dark */
+[data-theme="light"] .header--scrolled {
+  background: rgba(255, 255, 255, 0.9) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================
+   8. BUTTONS
+   ============================================ */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.6rem 1.2rem;
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all var(--transition-base);
+  cursor: pointer;
+}
+
+.button:hover,
+.button:focus-visible {
+  background: rgba(248, 156, 27, 0.1);
+  transform: translateY(-2px);
+}
+
+.button--outline {
+  border: 1px solid var(--glass-border);
+  color: var(--text-secondary);
+}
+
+.button--outline:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.button--sm {
+  padding: 0.4rem 0.8rem;
+  font-size: 0.75rem;
+}
+
+/* ============================================
+   9. MAIN LAYOUT
+   ============================================ */
+main {
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  /* Header floats at top:16px + height:70px = 86px.
+     Use space-sm (8px) as breathing room → ~94px total. */
+  padding: calc(var(--nav-height) + var(--space-md) + var(--space-sm))
+    var(--space-xl) var(--space-5xl);
+}
+
+section {
+  padding: var(--space-5xl) 0; /* increased padding for all sections */
+  min-height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  scroll-margin-top: 100px;
+}
+
+section:last-child {
+  padding-bottom: 0; /* remove padding-bottom from last section to avoid double-padding with main */
+}
+
+.section__header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-sm); /* reduced spacing below section header */
+}
+
+.section__title {
+  font-size: 1.5rem;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--text-primary);
+}
+
+.section__number {
+  color: var(--accent-color);
+  font-family: monospace;
+  font-size: 1.1rem;
+  font-weight: 400;
+}
+
+.section__divider {
+  flex-grow: 1;
+  height: 1px;
+  background: var(--glass-border);
+  max-width: 300px;
+}
+
+/* ============================================
+   10. HERO SECTION
+   ============================================ */
+.hero {
+  min-height: 70vh; /* Dikurangi dari 90vh agar tidak memakan satu layar penuh */
+}
+
+.hero__greeting {
+  color: var(--accent-color);
+  font-family: monospace;
+  font-size: 0.9rem;
+  margin-bottom: var(--space-md);
+  display: block;
+}
+
+.hero__subtitle {
+  font-size: clamp(1.5rem, 5vw, 2.2rem);
+  color: var(--text-secondary);
+  margin: var(--space-sm) 0;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.hero__description {
+  /* allow the paragraph to stretch more on wide viewports */
+  max-width: 650px;
+  margin-bottom: var(--space-2xl);
+  font-size: 1.05rem;
+}
+
+/* when screen is very wide, cap the line length using ch units */
+@media (min-width: 1200px) {
+  .hero__description {
+    max-width: 60ch;
+  }
+}
+
+.hero__cta-group {
+  display: flex;
+  gap: var(--space-md);
+}
+
+/* ============================================
+   11. ABOUT SECTION
+   ============================================ */
+.about__container {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: var(--space-3xl); /* reduced gap between text and image */
+  align-items: center;
+}
+
+.about__skills-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(140px, 200px));
+  gap: var(--space-sm);
+  margin-top: var(--space-lg);
+  padding: 0;
+}
+
+.about__skill-item {
+  position: relative;
+  padding-left: var(--space-lg);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.about__skill-item::before {
+  content: "▹";
+  position: absolute;
+  left: 0;
+  color: var(--accent-color);
+}
+
+.about__image-wrapper {
+  position: relative;
+}
+
+/* FIX: added isolation: isolate to create a stacking context so ::after pseudo-element
+   with z-index: -1 stays visible behind the image but above the page background. */
+.about__image-frame {
+  position: relative;
+  border-radius: var(--radius-sm);
+  background: var(--accent-color);
+  z-index: 1;
+  isolation: isolate;
+  width: 280px; /* reduced per request */
+  height: 280px;
+  transition:
+    transform var(--transition-base),
+    box-shadow var(--transition-base);
+}
+
+.about__image-frame::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--accent-color);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-base);
+  z-index: -1;
+}
+
+.about__image-wrapper:hover .about__image {
+  filter: grayscale(0%) contrast(1);
+  mix-blend-mode: normal; /* WAJIB: agar warna orange background hilang saat hover */
+}
+
+/* add hover animation to image frame */
+.about__image-wrapper:hover .about__image-frame {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px var(--glow-color);
+}
+
+/* Update bagian CSS Image Profile Anda */
+.about__image {
+  border-radius: var(--radius-sm);
+  filter: grayscale(100%) contrast(1.1); /* Keadaan awal: Hitam Putih */
+  transition:
+    all var(--transition-base),
+    mix-blend-mode var(--transition-base);
+  mix-blend-mode: multiply; /* Efek menyatu dengan background orange */
+  display: block;
+  z-index: 2;
+  position: relative;
+}
+
+/* Saat WRAPPER di-hover, foto kembali normal */
+.about__image-wrapper:hover .about__image {
+  filter: grayscale(0%) contrast(1); /* Kembali berwarna */
+  mix-blend-mode: normal; /* Menghilangkan efek multiply */
+}
+
+/* ============================================
+   12. PROJECTS SECTION
+   ============================================ */
+.projects__container {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 15px; /* tighten overall grid gap per request */
+  align-items: start;
+}
+
+.projects__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  /* Disable sticky so the project list scrolls normally (won't stick to navbar) */
+  position: static;
+  top: auto;
+  height: auto;
+}
+
+.project-list-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--bg-light);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+  width: 100%;
+}
+
+.project-list-item:hover,
+.project-list-item.active {
+  background: var(--glass-bg);
+  border-color: var(--accent-color);
+}
+
+.project-list-item__thumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: var(--bg-color);
+  flex-shrink: 0;
+}
+
+.project-list-item__thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-list-item__content {
+  min-width: 0;
+}
+
+.project-list-item__title {
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.project-list-item__category {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.projects__preview {
+  position: relative;
+  min-height: 300px;
+}
+
+/* FIX: Previously used display:none / display:grid to show/hide previews,
+   which prevented the fadeIn CSS animation from running.
+   Now uses opacity + visibility + pointer-events so transitions work correctly. */
+.project-preview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  background: var(--bg-light);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--glass-border);
+  transition:
+    opacity 0.4s ease,
+    visibility 0.4s ease;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.project-preview.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  position: relative;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-preview__image {
+  width: 100%;
+  min-height: 350px;
+  overflow: hidden;
+}
+
+.project-preview__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.project-preview__content {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.project-preview__title {
+  font-size: 1.4rem;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.project-preview__description {
+  color: var(--text-muted);
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+.project-preview__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.project-preview__links {
+  display: flex;
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+/* ============================================
+   13. CONTACT SECTION
+   ============================================ */
+.contact__content {
+  max-width: 600px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.contact__text {
+  margin-bottom: var(--space-2xl);
+  font-size: 1.05rem;
+}
+
+.contact__form {
+  padding: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  text-align: left;
+}
+
+.form__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.form__label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.form__input,
+.form__textarea {
+  padding: var(--space-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 1rem;
+  transition:
+    border-color var(--transition-base),
+    background var(--transition-base);
+}
+
+.form__input::placeholder,
+.form__textarea::placeholder {
+  color: var(--text-muted);
+  opacity: 0.7;
+}
+
+.form__input:focus,
+.form__textarea:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  background: rgba(248, 156, 27, 0.05);
+}
+
+.form__input:disabled,
+.form__textarea:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.form__error {
+  font-size: 0.75rem;
+  color: #ef4444;
+  min-height: 1rem;
+  display: block;
+}
+
+.form__status {
+  min-height: 1.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+/* ============================================
+   14. FOOTER
+   ============================================ */
+.footer {
+  padding: var(--space-2xl);
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: monospace;
+}
+
+/* Sidebars only visible when there is enough horizontal room.
+   Each sidebar is ~40px + 24px offset = ~64px per side.
+   content-max-width is 1000px, so we need ~1000 + 128px = ~1130px minimum. */
+@media (max-width: 1140px) {
+  .sidebar {
+    display: none;
+  }
+}
+
+/* ============================================
+   15. RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet and below: hide desktop nav, show hamburger */
+@media (max-width: 768px) {
+  main {
+    padding: calc(var(--nav-height) + var(--space-md) + var(--space-xl))
+      var(--space-xl) var(--space-2xl);
+  }
+
+  .header__menu-desktop {
+    display: none;
+  }
+
+  .header__resume-btn {
+    display: none;
+  }
+
+  .header__hamburger {
+    display: flex;
+  }
+
+  .hero__cta-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .hero__cta-group .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .about__container {
+    grid-template-columns: 1fr;
+  }
+
+  .about__image-wrapper {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .projects__container {
+    grid-template-columns: 1fr;
+    /* Prevent any horizontal overflow bleeding to the left */
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .projects__list {
+    flex-direction: row;
+    overflow-x: auto;
+    /* Full width so the scroll container doesn't shrink/shift */
+    width: 100%;
+    position: relative;
+    top: 0;
+    padding-bottom: var(--space-md);
+    scrollbar-width: thin;
+    scrollbar-color: var(--glass-border) transparent;
+  }
+
+  .project-list-item {
+    min-width: 220px;
+    flex-shrink: 0;
+  }
+
+  .project-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .project-preview.active {
+    grid-template-columns: 1fr;
+  }
+
+  .project-preview__image {
+    min-height: 200px;
+  }
+
+  .projects__preview {
+    min-height: auto;
+    width: 100%;
+  }
+
+  .project-preview__content {
+    padding: var(--space-lg);
+  }
+
+  .contact__form {
+    padding: var(--space-lg);
+  }
+}
+
+/* Mobile S and below: full-width flat header, wider menu panel */
+@media (max-width: 480px) {
+  .header {
+    top: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+    padding: 0 var(--space-md);
+  }
+
+  main {
+    padding-top: calc(var(--nav-height) + var(--space-xl));
+  }
+
+  .section__title {
+    font-size: 1.25rem;
+  }
+
+  /* On very small screens widen the panel so it doesn't feel cramped */
+  .header__menu-mobile {
+    width: 260px;
+  }
+
+  html {
+    scroll-padding-top: 88px;
+  }
+}
